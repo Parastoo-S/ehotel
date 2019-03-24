@@ -32,6 +32,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'mini_racer'
+gem "font-awesome-rails"
+gem 'will_paginate', '>= 3.1'
+gem 'pry', '~> 0.11.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
