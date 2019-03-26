@@ -5,22 +5,25 @@ class ChainController < ApplicationController
 
   def new
     @chain = Chain.new
-    @address = Address.new
+    @chain.address = Address.new
   end
 
   def create
     @chain = Chain.new(chain_params)
-    @address = Address.create(params[:address])
     if @chain.save
       flash[:notice] = "Chain created successfully."
+      redirect_to root_path
     else
       flash[:error] = "Could not create the chain."
+      render action: :new
     end
   end
 
   private
     def chain_params
-      params.require(:chain).permit(:name)
+      params.require(:chain).permit(:name , address_attributes: [:street_number, :street_name, :apt_number, :city, :state, :zip])
+      # params.require(:chain).permit(:name)
+
     end
 
 end

@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-
+  # has_one :chain
   validates :street_number,
     presence: {message: "Please provide the street number."}
 
@@ -16,7 +16,7 @@ class Address < ApplicationRecord
     presence: {message: "Please enter the state."}
 
   validates :zip,
-    presence: {message: "Please enter the state."}
-    format: {with: /^[A-Z][0-9][A-Z][0-9][A-Z][0-9]$/}
+    presence: {message: "Please enter the state."},
+    format: {with: /[A-Z][0-9][A-Z][0-9][A-Z][0-9]/},
     length: { maximum: 6 }
 end
