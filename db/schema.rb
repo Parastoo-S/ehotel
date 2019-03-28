@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190325175003) do
+ActiveRecord::Schema.define(version: 20190326192923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20190325175003) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "chain_emails", force: :cascade do |t|
+    t.string "email_address"
+    t.bigint "chain_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chain_id"], name: "index_chain_emails_on_chain_id"
+  end
+
   create_table "chains", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -34,5 +42,6 @@ ActiveRecord::Schema.define(version: 20190325175003) do
     t.index ["address_id"], name: "index_chains_on_address_id"
   end
 
+  add_foreign_key "chain_emails", "chains"
   add_foreign_key "chains", "addresses"
 end
