@@ -23,10 +23,8 @@ class ChainController < ApplicationController
   def create_emails
     if params['emails'].present?
       email_arr = params[:emails].split(',')
-      binding.pry
       email_arr.each do |email|
         ChainEmail.create(email_address: email, chain_id: @chain.id)
-        binding.pry
       end
     end
   end
