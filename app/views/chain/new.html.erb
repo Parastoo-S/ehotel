@@ -16,8 +16,12 @@
       <%= ff.text_field :city, placeholder: "City" %>
       <%= ff.text_field :state, placeholder: "State/Province" %>
       <%= ff.text_field :zip, placeholder: "ZIP Code" %>
-
     <% end %>
+    <br>
+    <%= f.label :email, "Enter email addresses"%><br>
+    <h6> Please separate emails with a comma</h6>
+    <%= text_area_tag 'emails' %>
+
     <%= f.submit "Create Hotel Chain" %>
 
     <% end %>
