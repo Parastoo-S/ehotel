@@ -1,8 +1,38 @@
-<section>
-  <h1>Hotel Chains</h1>
+<html>
+  <head>
+    <title>Ehotel</title>
+    <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+  <section>
+    <h1>Hotel Chains</h1>
 
 
-  <a href="/chain/new"><button class="btn"><i class="fas fa-plus"></i> New Hotel Chain</button></a>
+    <a href="/chain/new"><button class="btn"><i class="fas fa-plus"></i> New Hotel Chain</button></a>
+    <% @chains.each do |c| %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-4">
+              <div class="row">
+              <%= c.name %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <% c.chain_emails.each do |e| %>
+                <div class="row">
+                  <%= e.email_address %>
+                </div>
+              <% end %>
+            </div>
 
+          </div>
+         </div>
+      </div>
+    <% end %>
+    <section>
 
-<section>
+  </body>
+</html>

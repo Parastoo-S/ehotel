@@ -1,6 +1,7 @@
 class ChainController < ApplicationController
 
   def index
+    @chains = Chain.all
   end
 
   def new
@@ -20,6 +21,7 @@ class ChainController < ApplicationController
       render action: :new
     end
   end
+
 
   def create_emails
     if params['emails'].present?

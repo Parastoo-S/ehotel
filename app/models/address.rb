@@ -1,5 +1,4 @@
 class Address < ApplicationRecord
-  # has_one :chain
   validates :street_number,
     presence: {message: "Please provide the street number."}
 
