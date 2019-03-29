@@ -44,8 +44,6 @@ class ChainController < ApplicationController
   private
     def chain_params
       params.require(:chain).permit(:name , address_attributes: [:street_number, :street_name, :apt_number, :city, :state, :zip])
-      # params.require(:chain).permit(:name)
-
     end
 
 end

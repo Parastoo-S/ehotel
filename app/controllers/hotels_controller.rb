@@ -15,6 +15,9 @@ class HotelsController < ApplicationController
   # GET /hotels/new
   def new
     @hotel = Hotel.new
+    @hotel.address = Address.new
+    @chains = Chain.all
+    @ratings = [1,2,3,4,5]
   end
 
   # GET /hotels/1/edit
@@ -25,9 +28,10 @@ class HotelsController < ApplicationController
   # POST /hotels.json
   def create
     @hotel = Hotel.new(hotel_params)
-
+    # @hotel[:num_of_rooms] = @hotel.rooms.count
     respond_to do |format|
       if @hotel.save
+        # create_phone_numbers
         format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
         format.json { render :show, status: :created, location: @hotel }
       else
@@ -61,6 +65,15 @@ class HotelsController < ApplicationController
     end
   end
 
+  def create_phone_numbers
+    if params['phones'].present?
+      phone_arr = params[:phones].split(',')
+      phone_arr.each do |phone|
+        HotelPhoneNumber.create(phone_number: phone.gsub(/\s+/,''), hotel_id: @chain.id)
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hotel
@@ -69,6 +82,7 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.fetch(:hotel, {})
+      # params.fetch(:hotel, {})
+      params.require(:hotel).permit(:rating, :num_of_rooms, :email_address, :chain_id, address_attributes: [:street_number, :street_name, :apt_number, :city, :state, :zip])
     end
 end

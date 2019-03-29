@@ -12,6 +12,25 @@
   <% end %>
 
   <div class="actions">
+    <%= form.label :chain_id, "Chain" %>
+
+    <%= form.select :chain_id,  options_from_collection_for_select(Chain.all, 'id', 'name'), prompt: "Select Chain" %>
+
+    <%= form.label :email_address, "Email Address" %>
+    <%= form.text_field :email_address %>
+
+    <%= form.fields_for :address do |ff| %>
+      <%= ff.number_field :street_number, placeholder: "Street Number" %>
+      <%= ff.text_field :street_name, placeholder: "Street Name" %>
+      <%= ff.text_field :apt_number, placeholder: "Apartment Number" %> <br>
+      <%= ff.text_field :city, placeholder: "City" %>
+      <%= ff.text_field :state, placeholder: "State/Province" %>
+      <%= ff.text_field :zip, placeholder: "ZIP Code" %>
+    <% end %>
+
+    <%= form.label :rating, "Hotel Rating" %>
+    <%= form.select :rating,  [1,2,3,4,5], prompt: "Select Rating" %>
+
     <%= form.submit %>
   </div>
 <% end %>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "home#index"
   resources :chain
   resources :address
+  resources :hotel
 
 
 end
