@@ -31,7 +31,7 @@ class HotelsController < ApplicationController
     # @hotel[:num_of_rooms] = @hotel.rooms.count
     respond_to do |format|
       if @hotel.save
-        # create_phone_numbers
+        create_phone_numbers
         format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
         format.json { render :show, status: :created, location: @hotel }
       else
@@ -69,7 +69,7 @@ class HotelsController < ApplicationController
     if params['phones'].present?
       phone_arr = params[:phones].split(',')
       phone_arr.each do |phone|
-        HotelPhoneNumber.create(phone_number: phone.gsub(/\s+/,''), hotel_id: @chain.id)
+        HotelPhoneNumber.create(phone_number: phone.gsub(/\s+/,''), hotel_id: @hotel.id)
       end
     end
   end
