@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190328174424) do
+ActiveRecord::Schema.define(version: 20190329201540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20190328174424) do
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "amenities", force: :cascade do |t|
+    t.string "amenity_name"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_amenities_on_room_id"
   end
 
   create_table "chain_emails", force: :cascade do |t|
@@ -50,6 +58,14 @@ ActiveRecord::Schema.define(version: 20190328174424) do
     t.index ["address_id"], name: "index_chains_on_address_id"
   end
 
+  create_table "damages", force: :cascade do |t|
+    t.string "damage_name"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_damages_on_room_id"
+  end
+
   create_table "hotel_phone_numbers", force: :cascade do |t|
     t.string "phone_number"
     t.bigint "hotel_id"
@@ -70,10 +86,26 @@ ActiveRecord::Schema.define(version: 20190328174424) do
     t.index ["chain_id"], name: "index_hotels_on_chain_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.float "price"
+    t.integer "capacity"
+    t.boolean "extendible"
+    t.boolean "occupied"
+    t.string "status"
+    t.string "view"
+    t.bigint "hotel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
+  end
+
+  add_foreign_key "amenities", "rooms"
   add_foreign_key "chain_emails", "chains"
   add_foreign_key "chain_phone_numbers", "chains"
   add_foreign_key "chains", "addresses"
+  add_foreign_key "damages", "rooms"
   add_foreign_key "hotel_phone_numbers", "hotels"
   add_foreign_key "hotels", "addresses"
   add_foreign_key "hotels", "chains"
+  add_foreign_key "rooms", "hotels"
 end
