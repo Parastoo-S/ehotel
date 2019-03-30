@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :chain
   resources :address
   resources :hotel
+  resources :room
 
 
 end
