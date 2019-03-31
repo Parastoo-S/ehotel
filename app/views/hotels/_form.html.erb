@@ -13,12 +13,14 @@
 
   <div class="actions">
     <%= form.label :chain_id, "Chain" %>
-
     <%= form.select :chain_id,  options_from_collection_for_select(Chain.all, 'id', 'name'), prompt: "Select Chain" %>
+    <br>
 
     <%= form.label :email_address, "Email Address" %>
     <%= form.text_field :email_address %>
+    <br>
 
+    <%= form.label :address, "Address" %>
     <%= form.fields_for :address do |ff| %>
       <%= ff.number_field :street_number, placeholder: "Street Number" %>
       <%= ff.text_field :street_name, placeholder: "Street Name" %>
@@ -27,13 +29,16 @@
       <%= ff.text_field :state, placeholder: "State/Province" %>
       <%= ff.text_field :zip, placeholder: "ZIP Code" %>
     <% end %>
+    <br>
 
     <%= form.label :rating, "Hotel Rating" %>
     <%= form.select :rating,  [1,2,3,4,5], prompt: "Select Rating" %>
+    <br>
 
     <%= form.label :phone_number, "Enter Phone numbers"%><br>
     <h6> Please separate phone numbers with a comma</h6>
     <%= text_area_tag 'phones' %>
+    <br>
 
     <%= form.submit %>
   </div>

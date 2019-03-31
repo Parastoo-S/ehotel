@@ -12,6 +12,31 @@
   <% end %>
 
   <div class="actions">
+    <%= form.label :price, "Price" %>
+    <%= form.number_field :price, placeholder: "$", step: :any %>
+    <br>
+    <%= form.hidden_field :hotel_id, :value => params[:hotel_id] %>
+
+    <%= form.label :capacity, "Capacity" %>
+    <%= form.number_field :capacity %>
+    <br>
+    <%= form.label :extendible, "Extendible" %>
+    <%= form.check_box :extendible%>
+    <br>
+    <%= form.label :view, "View" %>
+    <%= form.select :view,  ["Sea View", "Mountain View"], prompt: "Choose view" %>
+    <br>
+    <%= form.label :amenity, "Amenities" %>
+    <%= form.fields_for :amenity do |ff| %>
+      <h6> Please separate phone numbers with a comma</h6><br>
+      <%= text_area_tag 'amenities' %>
+    <% end %>
+    <br>
+    <%= form.label :amenity, "Damages" %>
+    <%= form.fields_for :damage do |ff| %>
+      <h6> Please separate items with a comma</h6><br>
+      <%= text_area_tag 'damages' %>
+    <% end %>
     <%= form.submit %>
   </div>
 <% end %>

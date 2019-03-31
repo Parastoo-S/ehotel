@@ -15,6 +15,8 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    # @room.hotel_id = (params[:hotel_id]).to_i
+    # binding.pry
   end
 
   # GET /rooms/1/edit
@@ -24,10 +26,13 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
+    binding.pry
     @room = Room.new(room_params)
-
     respond_to do |format|
       if @room.save
+        create_amenity
+        create_damage
+        binding.pry
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
@@ -61,6 +66,24 @@ class RoomsController < ApplicationController
     end
   end
 
+  def create_amenity
+    if params['amenities'].present?
+      amenities_arr = params[:amenities].split(',')
+      amenities_arr.each do |amenity|
+        Amenity.create(amenity_name: amenity.gsub(/\s+/,''), room_id: @room.id)
+      end
+    end
+  end
+
+  def create_damage
+    if params['damages'].present?
+      damages_arr = params[:damages].split(',')
+      damages_arr.each do |damage|
+        Damage.create(damage_name: damage.gsub(/\s+/,''), room_id: @room.id)
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
@@ -69,6 +92,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.fetch(:room, {})
+      params.fetch(:room).permit(:price, :capacity, :extendible, :occupied, :status, :view, :hotel_id, amenity_attributes: [:amenity_name, :room_id], damage_attributes: [:damage_name, :room_id])
     end
 end
