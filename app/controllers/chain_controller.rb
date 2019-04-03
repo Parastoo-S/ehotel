@@ -22,6 +22,14 @@ class ChainController < ApplicationController
     end
   end
 
+  def destroy
+  
+    @chain.destroy
+    respond_to do |format|
+      format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   def create_emails
     if params['emails'].present?

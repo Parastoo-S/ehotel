@@ -6,34 +6,34 @@
   </head>
 
   <body>
-  <section>
-    <h1>Hotel Chains</h1>
+  <section class="container">
+    <h1 id="title"><b>Hotel Chains</b></h1>
 
-
-    <a href="/chain/new"><button class="btn">New Hotel Chain</button></a>
-    <a href="/hotels/new"><button class="btn"><i class="fas fa-plus"></i>Add Hotel</button></a>
-
+    <div class="options">
+    <a href="/chain/new"><button class="newButton">New Hotel Chain</button></a>
+    <a href="/hotels/new"><button class="addButton"><i class="fas fa-plus"></i> Add Hotel</button></a>
+    </div>
     <% @chains.each do |c| %>
-      <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-4">
-              <div class="row">
               <%= c.name %>
-              </div>
-            </div>
-            <div class="col-md-4">
               <% c.chain_emails.each do |e| %>
-                <div class="row">
                   <%= e.email_address %>
-                </div>
               <% end %>
-            </div>
+        </div>
 
-          </div>
-         </div>
-      </div>
     <% end %>
+    <div class="row">
+
+      <div class="column">
+        <h2>Column</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mae.</p>
+      </div>
+
+      <div class="column">
+        <h2>Column</h2>
+        <p>Lorem ipsum dolor sit amet, consectnelerisque tortor sed accumsan convallis.</p>
+      </div>
+    </div>
     <section>
 
   </body>
