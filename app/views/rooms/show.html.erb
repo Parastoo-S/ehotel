@@ -7,4 +7,4 @@
 <%= link_to 'Book This Room', new_booking_path(:room_id => @room.id) %>
 
 <h3> IF THE USER IS AN EMPLOYEE, SHOW THIS BUTTON </h3>
-<%= link_to 'Rent This Room', new_booking_path(:room_id => @room.id) %>
+<%= link_to 'Rent This Room', new_payment_path(:room_id => @room.id) %>
