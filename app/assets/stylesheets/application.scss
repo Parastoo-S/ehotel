@@ -14,7 +14,7 @@
  @import 'datetime_picker_input';
 
  body {
-   padding-top: 50px;
+   padding: 100px;
  }
 
 //Add Button Styles
@@ -108,7 +108,7 @@
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
-  width: 33.33%;
+  width: 25%;
   padding: 15px;
 }
 
@@ -124,4 +124,11 @@
   .column {
     width: 100%;
   }
+}
+.row.main{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 3px 7px 16px -7px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 7px 16px -7px rgba(0,0,0,0.75);
+  box-shadow: 3px 7px 16px -7px rgba(0,0,0,0.75);
 }
