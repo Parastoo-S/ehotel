@@ -2,8 +2,11 @@
 <h1> Hotel </h1>
 <button class="newButton options"><%= link_to 'Create New Room', new_room_path(:hotel_id => (@hotel.id).to_s), style:"text-decoration:none;color: #FFF" %></button>
 <br><br>
-<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
+<%= link_to 'Edit Hotel', edit_hotel_path(@hotel), class: 'fas fa-edit',style:"text-decoration:none; color: #43CD80" %> |
+
 <%= link_to 'Back', hotels_path %>
+
+
 
 <section class="container">
 
