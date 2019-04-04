@@ -40,8 +40,6 @@ gem 'will_paginate', '>= 3.1'
 gem 'pry', '~> 0.11.3'
 gem 'jquery-rails'
 gem 'momentjs-rails'
-gem 'bootstrap-daterangepicker-rails'
-gem 'datetime_picker_input'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
