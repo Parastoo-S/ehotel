@@ -1,0 +1,35 @@
+<% if flash[:alert] %>
+  <div id="alert"><%= flash[:alert] %></div>
+<% end %>
+<h1>Create a new hotel chain</h1>
+<section>
+  <div>
+    <%= form_for @chain, url: {controller: "chain", action: "update"}, html: {multipart: true} do |f| %>
+      <%= f.label :name, "Chain Name" %><br>
+      <%= f.text_field :name %>
+
+    <br>
+    <%= f.fields_for :address do |ff| %>
+      <%= ff.number_field :street_number, placeholder: "Street Number" %>
+      <%= ff.text_field :street_name, placeholder: "Street Name" %>
+      <%= ff.text_field :apt_number, placeholder: "Apartment Number" %> <br>
+      <%= ff.text_field :city, placeholder: "City" %>
+      <%= ff.text_field :state, placeholder: "State/Province" %>
+      <%= ff.text_field :zip, placeholder: "ZIP Code" %>
+    <% end %>
+    <br>
+    <%= f.label :email, "Enter email addresses"%><br>
+    <h6> Please separate emails with a comma</h6>
+    <%= text_area_tag 'emails' %>
+    <br>
+    <%= f.label :phone_number, "Enter Phone numbers"%><br>
+    <h6> Please separate phone numbers with a comma</h6>
+    <%= text_area_tag 'phones' %>
+
+    <%= f.submit "Update Hotel Chain" %>
+
+    <% end %>
+
+  </div>
+
+</section>

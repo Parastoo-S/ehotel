@@ -1,7 +1,7 @@
 class Room < ApplicationRecord
-  has_many :damages
-  has_many :amenities
-  belongs_to :hotel
+  has_many :damages, dependent: :destroy
+  has_many :amenities, dependent: :destroy
+  belongs_to :hotel, dependent: :destroy
 
   accepts_nested_attributes_for :damages
   validates_associated :damages

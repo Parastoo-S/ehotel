@@ -6,35 +6,44 @@
   </head>
 
   <body>
-  <section>
-    <h1>Hotel Chains</h1>
+    <div class="options">
+    <a href="/chain/new"><button class="newButton">New Hotel Chain</button></a>
+    </div>
+  <h1 id="title"><b>Hotel Chains</b></h1>
 
+  <section class="container">
+    <% @chains.each do |chain| %>
+        <div class="row main">
+          <div class="column">
+              <a href="/chain/<%=chain.id%>", style="text-decoration:none;"><%= chain.name %></a>
+              <br>
+              <%= chain.address.get_full_address %>
+          </div>
 
-    <a href="/chain/new"><button class="btn">New Hotel Chain</button></a>
-    <a href="/hotels/new"><button class="btn"><i class="fas fa-plus"></i>Add Hotel</button></a>
-
-    <% @chains.each do |c| %>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-4">
-              <div class="row">
-              <%= c.name %>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <% c.chain_emails.each do |e| %>
+          <div class="column">
+              <% chain.chain_emails.each do |email| %>
                 <div class="row">
-                  <%= e.email_address %>
+                    <%= email.email_address %>
                 </div>
               <% end %>
-            </div>
-
           </div>
-         </div>
-      </div>
+
+          <div class="column">
+              <% chain.chain_phone_numbers.each do |phone| %>
+                <div class="row">
+                    <%= phone.phone_number %>
+                </div>
+              <% end %>
+          </div>
+          <div class="column">
+            <div class="row">
+            <%= link_to ' View', chain, class: 'fas fa-eye',style:"text-decoration:none; color: #00F" %>
+            </div>
+          </div>
+        </div>
+
     <% end %>
-    <section>
+  <section>
 
   </body>
 </html>

@@ -15,4 +15,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require moment
+//= require daterangepicker
+//= require datetime_picker_input 
 //= require_tree .

@@ -1,3 +1,3 @@
 class ChainEmail < ApplicationRecord
-  belongs_to :chain
+  belongs_to :chain, dependent: :destroy
 end

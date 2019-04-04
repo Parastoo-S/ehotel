@@ -28,11 +28,11 @@
     <br>
     <%= form.label :amenity, "Amenities" %>
     <%= form.fields_for :amenity do |ff| %>
-      <h6> Please separate phone numbers with a comma</h6><br>
+      <h6> Please separate items with a comma</h6><br>
       <%= text_area_tag 'amenities' %>
     <% end %>
     <br>
-    <%= form.label :amenity, "Damages" %>
+    <%= form.label :damage, "Damages" %>
     <%= form.fields_for :damage do |ff| %>
       <h6> Please separate items with a comma</h6><br>
       <%= text_area_tag 'damages' %>

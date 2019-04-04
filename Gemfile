@@ -37,6 +37,8 @@ gem 'mini_racer'
 gem "font-awesome-rails"
 gem 'will_paginate', '>= 3.1'
 gem 'pry', '~> 0.11.3'
+gem 'jquery-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
