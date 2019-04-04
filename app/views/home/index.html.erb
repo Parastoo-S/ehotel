@@ -1,15 +1,47 @@
 <!-- <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
  -->
-
 <div class="container">
-
   <div class="text-center">
-    <h1>Book a Hotel Room with Us!</h1>
-    <p class="lead">Offering locations wherever your next destination is!</p>
-    <%= image_tag "hotel_room.jpg", class:"hotel_img" %>
-
   </div>
-
-
 </div>
+  <section id="slide_bg" class="pane1 end">
+    <div class="overlay"></div>
+  </section>
+
+
+
+    <script type="text/javascript">
+      var slide = document.getElementById('slide_bg');
+      var overlay = slide.getElementsByClassName('overlay')[0];
+      var slide_info = slide.getBoundingClientRect();
+      var overlay_info = overlay.getBoundingClientRect();
+
+      var stop = slide_info.bottom - overlay_info.height;
+      var distance = slide_info.height - overlay_info.height;
+
+      window.onscroll = function () {
+        var y = window.scrollY;
+        var offset = y-slide_info.top;
+        var percent = 0;
+        if (offset > 0 && y <= stop) {
+          if (overlay.classList.contains('end')) {
+            overlay.classList.remove('end');
+          }
+          if (slide.classList.contains('end')) {
+            slide.classList.remove('end');
+          }
+          percent = (offset/distance)*100;
+          overlay.style.left = (100-percent) + '%';
+        }
+        else if (offset < 0 && overlay.style.left != '100%') {
+          overlay.style.left = '100%';
+          slide.classList.add('end');
+        }
+        else if (y > stop && overlay.style.left != '0') {
+          overlay.style.left = '0';
+          overlay.classList.add('end');
+        }
+      }
+
+    </script>
