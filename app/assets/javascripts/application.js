@@ -15,5 +15,4 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require moment
 //= require_tree .
