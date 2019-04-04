@@ -1,6 +1,41 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.hotel_img{
-  width: 100%;
+body {
+  margin:0;
+  font-family:Helvetica,Sans-serif;
+}
+header,footer {
+  height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+section {
+  height:300vh;
+  background-attachment:fixed;
+  background-size:cover;
+  position:relative;
+  overflow:hidden;
+}
+.pane1 {
+  background:url(https://www.gansevoorthotelgroup.com/content/slides/pool-stainedwood-1500x9006.jpg) top center fixed;
+}
+.pane1.end {
+  background-attachment:initial;
+}
+.overlay {
+  position:fixed;
+  top:0;
+  height:100vh;
+  left:100%;
+  width:100%;
+  background:url(https://images.trvl-media.com/hotels/13000000/12070000/12064600/12064571/7bc9cda7_z.jpg) center center / cover fixed;
+}
+.overlay.end {
+  position:absolute;
+  top:inherit;
+  bottom:0;
+  background-attachment:initial;
 }

@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root "home#index"
   resources :chain
   resources :address
+  # get 'media'
+  resources :media
 end
