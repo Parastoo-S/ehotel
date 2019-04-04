@@ -1,5 +1,43 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Create New Room', new_room_path(:hotel_id => (@hotel.id).to_s) %>
+<h1> Hotel </h1>
+<button class="newButton options"><%= link_to 'Create New Room', new_room_path(:hotel_id => (@hotel.id).to_s), style:"text-decoration:none;color: #FFF" %></button>
 <br><br>
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %>
+
+<section class="container">
+
+  <h1><b>Rooms Available</b></h1>
+  <% @hotel_rooms.each do |room| %>
+
+  <div class="row main">
+    <div class="column">
+      <div>Room sleeps <%=room.capacity %> guests</div>
+      <div>Extindable:<%=room.extendible ? "Yes" : "No"%></div>
+    </div>
+      <div class="column">
+        <b>Amenities</b>
+          <% room.amenities.each do |amenity| %>
+            <div class="row">
+              <i class="fas fa-check"></i> <%= amenity.amenity_name %>
+            </div>
+          <% end %>
+          </div>
+      <div class="column">
+        <div class="row">
+          <b><i class="fas fa-house-damage"></i> Damages</b>
+        </div>
+        <% room.damages.each do |damage| %>
+          <div class="row">
+            <%= damage.damage_name %>
+          </div>
+        <% end %>
+      </div>
+      <div class="column">
+        <%= link_to 'Reserve', new_booking_path(:room_id => room.id),class:"addButton" , style:"text-decoration:none;color: #FFF"%>
+      </div>
+  </div>
+
+
+  <% end %>
+</section>

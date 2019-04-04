@@ -16,7 +16,6 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     # @room.hotel_id = (params[:hotel_id]).to_i
-    # binding.pry
   end
 
   # GET /rooms/1/edit
@@ -26,13 +25,14 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    binding.pry
     @room = Room.new(room_params)
     respond_to do |format|
       if @room.save
+        if params[:hotel_id].present?
+          @room.hotel = params[:hotel_id]
+        end
         create_amenity
         create_damage
-        binding.pry
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else

@@ -9,24 +9,48 @@ class ChainController < ApplicationController
     @chain.address = Address.new
   end
 
+  def show
+    @chain = Chain.find(params[:id])
+    @chain_hotels = @chain.hotels
+  end
+
   def create
     @chain = Chain.new(chain_params)
     if @chain.save
       create_emails
       create_phone_numbers
       flash[:notice] = "Chain created successfully."
-      redirect_to root_path
+      redirect_to chain_index_path
     else
       flash[:error] = "Could not create the chain."
       render action: :new
     end
   end
 
+  def edit
+    @chain = Chain.find(params[:chain_id])
+  end
+
+  def update
+    respond_to do |format|
+      @chain = Chain.find(params[:chain_id])
+      binding.pry
+      if @chain.update(chain_params)
+        binding.pry
+        format.html { redirect_to chain_show_path, notice: 'Chain was successfully updated.' }
+        format.json { render :show, status: :ok, location: @chain }
+      else
+        format.html { render :edit }
+        format.json { render json: @chain.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
-  
+    @chain = Chain.find(params[:chain_id])
     @chain.destroy
     respond_to do |format|
-      format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
+      format.html { redirect_to chain_index_url, notice: 'Chain was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -50,6 +74,10 @@ class ChainController < ApplicationController
   end
 
   private
+    def set_chain
+      @chain = Chain.find(params[:id])
+    end
+
     def chain_params
       params.require(:chain).permit(:name , address_attributes: [:street_number, :street_name, :apt_number, :city, :state, :zip])
     end
