@@ -1,5 +1,5 @@
 class Chain < ApplicationRecord
-  belongs_to :address, dependent: :destroy
+  belongs_to :address
   has_many :chain_emails, dependent: :destroy
   has_many :chain_phone_numbers, dependent: :destroy
   has_many :hotels, dependent: :destroy

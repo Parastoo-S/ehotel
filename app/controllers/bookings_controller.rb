@@ -15,6 +15,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @booking.room = Room.find(params[:room_id])
   end
 
   # GET /bookings/1/edit
@@ -29,9 +30,10 @@ class BookingsController < ApplicationController
       @booking.hotel_id = params[:hotel_id]
     end
     @booking[:status] = "booking"
+    @booking.room.update(:status => "booking")
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
@@ -72,6 +74,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.fetch(:booking).permit(:check_in, :check_out, :hotel_id)
+      params.fetch(:booking).permit(:check_in, :check_out, :room_id)
     end
 end

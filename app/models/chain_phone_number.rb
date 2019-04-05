@@ -1,3 +1,3 @@
 class ChainPhoneNumber < ApplicationRecord
-  belongs_to :chain, dependent: :destroy
+  belongs_to :chain
 end
