@@ -17,8 +17,11 @@
 </section>
 <section>
   <h1><b>Search Results</b></h1>
+
   <% if !@filter%>
     <h3> No search criteria specified </h3>
+  <% else %>
+    <h2> <%= @rooms.count %> rooms found </h2>
   <% end %>
   <% @rooms.each do |room| %>
 
