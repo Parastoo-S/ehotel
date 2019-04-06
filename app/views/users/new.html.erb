@@ -25,8 +25,22 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+
+      <%= f.label :SSN %>
+      <%= f.text_field :ssn, class: 'form-control' %>
+
+      <%= f.label :Position %>
+      <%= f.text_field :position, class: 'form-control' %>
+
+
+      <%= f.label :account_type, "Account Type" %>
+      <%= f.text_field :account_type, class: 'form-control' %>
+
+
+
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
