@@ -17,8 +17,8 @@
 </section>
 <section>
   <h1><b>Search Results</b></h1>
-  <% if @rooms.empty? %>
-    <h3> No room with the specified criteria found! </h3>
+  <% if !@filter%>
+    <h3> No search criteria specified </h3>
   <% end %>
   <% @rooms.each do |room| %>
 

@@ -18,7 +18,9 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
-    @booking.room = Room.find(params[:room_id])
+    if params[:room_id].present?
+      @booking.room = Room.find(params[:room_id])
+    end
   end
 
   # GET /bookings/1/edit

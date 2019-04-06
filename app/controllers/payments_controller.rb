@@ -15,8 +15,12 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
-    @room = Room.find(params[:room_id])
-    @booking = Booking.find(params[:booking_id])
+    if params[:room_id].present?
+      @room = Room.find(params[:room_id])
+    end
+    if params[:booking_id].present?
+      @booking = Booking.find(params[:booking_id])
+    end
   end
 
   # GET /payments/1/edit
@@ -36,7 +40,7 @@ class PaymentsController < ApplicationController
     end
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }

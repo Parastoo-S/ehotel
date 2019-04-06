@@ -34,9 +34,10 @@
     <br>
     <%= form.hidden_field :room_id, :value => params[:room_id] %>
     <%= form.hidden_field :employee_id, :value => current_user.id %>
-    <%= form.hidden_field :booking_id, :value => params[:booking_id] %>
-    <%= form.hidden_field :customer_id, :value => @booking.user_id %>
-
+    <% if params[:booking_id].present? %>
+      <%= form.hidden_field :booking_id, :value => params[:booking_id] %>
+      <%= form.hidden_field :customer_id, :value => @booking.user_id %>
+    <% end %>
     <%= form.select :payment_method, ["Debit", "Visa", "MasterCard", "Cash"], prompt: "Select Payment Method" %>
     <br>
     <%= form.submit :class => "newButton" %>
