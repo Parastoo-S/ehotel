@@ -1,3 +1,11 @@
+<% if flash[:notice] %>
+  <div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div id="alert"><%= flash[:alert] %></div>
+<% end %>
+
 <%= form_with(model: booking, local: true) do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
@@ -12,12 +20,36 @@
   <% end %>
 
   <div class="actions">
+    <b><h3> Room Info </h3></b>
+    <i class="fas fa-map-marker-alt"></i> <%= @booking.room.hotel.chain.address.get_full_address %>
+    <div>Room sleeps <%=@booking.room.capacity %> guests</div>
+    <div>Extindable:<%=@booking.room.extendible ? "Yes" : "No"%></div>
+    <div><%=@booking.room.view%></div>
+    <b>Amenities</b>
+    <% @booking.room.amenities.each do |amenity| %>
+      <div class="row">
+        <i class="fas fa-check"></i> <%= amenity.amenity_name %>
+      </div>
+    <% end %>
+    <div class="row">
+      <b><i class="fas fa-house-damage"></i> Damages</b>
+    </div>
+    <% @booking.room.damages.each do |damage| %>
+      <div class="row">
+        <%= damage.damage_name %>
+      </div>
+    <% end %>
+    <br>
+    <%= form.hidden_field :room_id, :value => params[:room_id] %>
+    <div class="row">
     <%= form.label :check_in, "Check-in"%>
     <%= date_field("booking", "check_in", min: Date.today)%>
+    </div>
     <br>
+    <div class="row">
     <%= form.label :check_out, "Check-out"%>
     <%= date_field("booking", "check_out", min: Date.today)%>
-
+    </div>
     <br>
     <%= form.submit %>
   </div>

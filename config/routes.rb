@@ -15,9 +15,6 @@ Rails.application.routes.draw do
   resources :payments
   resources :bookings
   resources :users
-
-
-
   resources :rooms
   resources :hotels
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -33,6 +30,10 @@ Rails.application.routes.draw do
     # end
   end
   resources :address
-  # get 'media'
   resources :media
+  resources :search do
+    collection do
+      get 'search'
+    end
+  end
 end

@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+  # has_many :hotels
   validates :street_number,
     presence: {message: "Please provide the street number."}
 

@@ -1,0 +1,57 @@
+<section class="container">
+
+  <div class="row">
+    <%= form_tag search_search_index_path, method: :get, action: :search do %>
+
+      <%= text_field_tag :city, nil, placeholder: 'Search by City' %>
+
+      <%= date_field_tag :check_in, min: Date.today %>
+
+      <%= date_field_tag :check_out, min: Date.today %>
+
+      <%= number_field_tag :capacity, nil, placeholder: 'Capacity', min: '0' %>
+      <%= submit_tag "Search",class:"newButton" %>
+    <% end %>
+  </div>
+
+</section>
+<section>
+  <h1><b>Search Results</b></h1>
+  <% @rooms.each do |room| %>
+
+  <div class="row main">
+    <div class="rcolumn">
+      <b><%=room.hotel.chain.name %></b>
+
+      <div>Address <%=room.hotel.address.get_full_address %></div>
+    </div>
+    <div class="rcolumn">
+      <div>Room sleeps <%=room.capacity %> guests</div>
+      <div>Extindable:<%=room.extendible ? "Yes" : "No"%></div>
+      <div><%=room.view%></div>
+
+    </div>
+      <div class="rcolumn">
+        <b>Amenities</b>
+          <% room.amenities.each do |amenity| %>
+            <div class="row">
+              <i class="fas fa-check"></i> <%= amenity.amenity_name %>
+            </div>
+          <% end %>
+          </div>
+      <div class="rcolumn">
+        <div class="row">
+          <b><i class="fas fa-house-damage"></i> Damages</b>
+        </div>
+        <% room.damages.each do |damage| %>
+          <div class="row">
+            <%= damage.damage_name %>
+          </div>
+        <% end %>
+      </div>
+      <div class="rcolumn">
+        <%= link_to 'Reserve', new_booking_path(:room_id => room.id),class:"addButton" , style:"text-decoration:none;color: #FFF"%>
+      </div>
+  </div>
+  <% end %>
+</section>
