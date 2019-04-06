@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190404234155) do
 
   # These are extensions that must be enabled in order to support this database
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(version: 20190404234155) do
 
   create_table "amenities", force: :cascade do |t|
     t.string "amenity_name"
-    t.bigint "room_id"
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_amenities_on_room_id"
@@ -44,7 +45,7 @@ ActiveRecord::Schema.define(version: 20190404234155) do
 
   create_table "chain_emails", force: :cascade do |t|
     t.string "email_address"
-    t.bigint "chain_id"
+    t.integer "chain_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chain_id"], name: "index_chain_emails_on_chain_id"
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 20190404234155) do
 
   create_table "chain_phone_numbers", force: :cascade do |t|
     t.string "phone_number"
-    t.bigint "chain_id"
+    t.integer "chain_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chain_id"], name: "index_chain_phone_numbers_on_chain_id"
@@ -62,13 +63,13 @@ ActiveRecord::Schema.define(version: 20190404234155) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "address_id"
+    t.integer "address_id"
     t.index ["address_id"], name: "index_chains_on_address_id"
   end
 
   create_table "damages", force: :cascade do |t|
     t.string "damage_name"
-    t.bigint "room_id"
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_damages_on_room_id"
@@ -76,7 +77,7 @@ ActiveRecord::Schema.define(version: 20190404234155) do
 
   create_table "hotel_phone_numbers", force: :cascade do |t|
     t.string "phone_number"
-    t.bigint "hotel_id"
+    t.integer "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hotel_id"], name: "index_hotel_phone_numbers_on_hotel_id"
@@ -85,8 +86,8 @@ ActiveRecord::Schema.define(version: 20190404234155) do
   create_table "hotels", force: :cascade do |t|
     t.integer "num_of_rooms"
     t.integer "rating"
-    t.bigint "chain_id"
-    t.bigint "address_id"
+    t.integer "chain_id"
+    t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email_address"
@@ -108,13 +109,14 @@ ActiveRecord::Schema.define(version: 20190404234155) do
     t.boolean "occupied"
     t.string "status"
     t.string "view"
-    t.bigint "hotel_id"
+    t.integer "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "ssn"
     t.string "first_name"
     t.string "middle_name"
@@ -123,13 +125,14 @@ ActiveRecord::Schema.define(version: 20190404234155) do
     t.string "position"
     t.string "email"
     t.string "password"
-    t.bigint "address_id"
+    t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+
 
   add_foreign_key "amenities", "rooms"
   add_foreign_key "chain_emails", "chains"
