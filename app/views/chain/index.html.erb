@@ -6,9 +6,12 @@
   </head>
 
   <body>
-    <div class="options">
-    <a href="/chain/new"><button class="newButton">New Hotel Chain</button></a>
-    </div>
+    <% if current_user.employee? %>
+      <div class="options">
+      <a href="/chain/new"><button class="newButton">New Hotel Chain</button></a>
+      </div>
+    <% end %>
+
   <h1 id="title"><b>Hotel Chains</b></h1>
 
   <section class="container">
@@ -17,7 +20,7 @@
           <div class="column">
               <a href="/chain/<%=chain.id%>", style="text-decoration:none;"><%= chain.name %></a>
               <br>
-              <%= chain.address.get_full_address %>
+              <i class="fas fa-map-marker-alt"></i> <%= chain.address.get_full_address %>
           </div>
 
           <div class="column">

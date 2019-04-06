@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
   def index
-
   end
 
   def search
@@ -10,6 +9,8 @@ class SearchController < ApplicationController
       @rooms = Room.is_located(params[:city])
     elsif (!params[:capacity].nil? && (params[:capacity] != ""))
       @rooms = Room.has_capacity(params[:capacity].to_i)
+    else
+      @rooms = []
     end
   end
 

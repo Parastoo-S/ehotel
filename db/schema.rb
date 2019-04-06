@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190405035714) do
+ActiveRecord::Schema.define(version: 20190406164927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,10 @@ ActiveRecord::Schema.define(version: 20190405035714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "room_id"
+    t.integer "employee_id"
+    t.bigint "user_id"
     t.index ["room_id"], name: "index_bookings_on_room_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "chain_emails", force: :cascade do |t|
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20190405035714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email_address"
+    t.integer "manager_id"
     t.index ["address_id"], name: "index_hotels_on_address_id"
     t.index ["chain_id"], name: "index_hotels_on_chain_id"
   end
@@ -100,6 +104,9 @@ ActiveRecord::Schema.define(version: 20190405035714) do
     t.bigint "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "employee_id"
+    t.integer "customer_id"
+    t.string "payment_method"
     t.index ["room_id"], name: "index_payments_on_room_id"
   end
 
@@ -135,6 +142,7 @@ ActiveRecord::Schema.define(version: 20190405035714) do
 
   add_foreign_key "amenities", "rooms"
   add_foreign_key "bookings", "rooms"
+  add_foreign_key "bookings", "users"
   add_foreign_key "chain_emails", "chains"
   add_foreign_key "chain_phone_numbers", "chains"
   add_foreign_key "chains", "addresses"

@@ -15,6 +15,8 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
+    @room = Room.find(params[:room_id])
+    @booking = Booking.find(params[:booking_id])
   end
 
   # GET /payments/1/edit
@@ -26,10 +28,12 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
     if params[:room_id].present?
-      @booking.hotel_id = params[:hotel_id]
+      @payment.room_id = params[:room_id]
       Room.find(params[:room_id]).update(:status => "renting")
     end
-    binding.pry
+    if params[:booking_id].present?
+      @payment.customer_id = params[:booking_id].user_id
+    end
     respond_to do |format|
       if @payment.save
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
@@ -73,6 +77,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.fetch(:payment).permit(:hotel_id)
+      params.fetch(:payment).permit(:payment_method, :customer_id, :employee_id, :room_id)
     end
 end

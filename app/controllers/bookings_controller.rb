@@ -4,7 +4,10 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    unless current_user && current_user.employee?
+      redirect_to root_path
+    end
+    @bookings = Booking.where(:status => "booking").order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   # GET /bookings/1
@@ -26,6 +29,7 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
     if params[:room_id].present?
       @booking.hotel_id = params[:hotel_id]
     end

@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
+<% if current_user.employee? %>
 <a href="/hotels/new"><button class="addButton options"><i class="fas fa-plus"></i> Add Hotel</button></a>
-
 <%= link_to ' Edit Chain', chain_edit_path(@chain.id) , class: 'fas fa-edit',style:"text-decoration:none; color: #43CD80" %> |
 <%= link_to ' Delete Chain', chain_destroy_path(@chain.id), data: {confirm: 'Are you sure you want to delete this chain? This action cannot be undone.'}, class: 'fas fa-trash-alt',style:"text-decoration:none; color: #F00" %>
-
+<% end %>
 <section class="container">
   <h1><%= @chain.name %></h1>
   <h2><b>Hotels</b></h2>
@@ -12,7 +12,7 @@
     <div class="row main">
       <div class="column">
         <div class="row">
-          <%= hotel.address.get_full_address %>
+          <i class="fas fa-map-marker-alt"></i> <%= hotel.address.get_full_address %>
         </div>
         <div class="row">
           <%= hotel.email_address %>
@@ -21,7 +21,7 @@
 
       <div class="column">
         <div class="row">
-          <%= hotel.num_of_rooms%><p> rooms </p>
+          <%= hotel.rooms.count%> rooms
         </div>
         <div class="row">
           <i class="fas fa-star"> </i><%= hotel.rating%>

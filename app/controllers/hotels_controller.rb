@@ -10,6 +10,7 @@ class HotelsController < ApplicationController
   # GET /hotels/1
   # GET /hotels/1.json
   def show
+    @hotel = Hotel.find(params[:id])
     @hotel_rooms = @hotel.rooms
   end
 
