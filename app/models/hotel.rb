@@ -8,4 +8,6 @@ class Hotel < ApplicationRecord
   accepts_nested_attributes_for :address
   validates_associated :address
 
+  # scope :is_located, ->(city){ joins(:address).where(addresses:{city: city}) }
+
 end

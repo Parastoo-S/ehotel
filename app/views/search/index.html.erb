@@ -1,0 +1,22 @@
+<body class=search_container>
+<section class="container">
+  <h1> Explore </h1>
+  <br><br>
+    <div class="row">
+      <%= form_tag search_search_index_path, method: :get, action: :search do %>
+
+        <%= text_field_tag :city, nil, placeholder: 'Search by City' %>
+
+        <%= date_field_tag :check_in, min: Date.today %>
+
+        <%= date_field_tag :check_out, min: Date.today %>
+
+        <%= number_field_tag :capacity, nil, placeholder: 'Capacity', min: '0' %>
+        <%= submit_tag "Search", class:"newButton" %>
+
+      <% end %>
+
+    </div>
+
+</section>
+</body>
