@@ -28,14 +28,14 @@ class ChainController < ApplicationController
   end
 
   def edit
-    @chain = Chain.find(params[:chain_id])
+    @chain = Chain.find(params[:id])
   end
 
   def update
     respond_to do |format|
-      @chain = Chain.find(params[:chain_id])
+      @chain = Chain.find(params[:id])
       if @chain.update(chain_params)
-        format.html { redirect_to chain_show_path, notice: 'Chain was successfully updated.' }
+        format.html { redirect_to @chain, notice: 'Chain was successfully updated.' }
         format.json { render :show, status: :ok, location: @chain }
       else
         format.html { render :edit }
