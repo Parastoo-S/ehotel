@@ -1,7 +1,7 @@
 class ChainController < ApplicationController
 
   def index
-    @chains = Chain.all
+    @chains = Chain.all.order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -11,7 +11,7 @@ class ChainController < ApplicationController
 
   def show
     @chain = Chain.find(params[:id])
-    @chain_hotels = @chain.hotels
+    @chain_hotels = @chain.hotels.order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def create
