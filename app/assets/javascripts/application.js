@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -16,3 +17,5 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+//= require jquery
+//= require jquery_ujs

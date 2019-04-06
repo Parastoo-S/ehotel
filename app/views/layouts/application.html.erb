@@ -5,7 +5,6 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +21,9 @@
 
   <body>
 
+    <% flash.each do |message_type, message| %>
+    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -33,7 +35,22 @@
           <li><a href="/rooms">Rooms</a></li>
           <li><a href="/media">Follow us</a></li>
 
-        </ul>
+
+                <% if logged_in? %>
+                      <li class="divider"></li>
+                      <li>
+                        <%= javascript_include_tag :jquery, :jquery_ujs %>
+                        <%= link_to "Log out", logout_path, method: :delete %>
+                      </li>
+                    </ul>
+                <% else %>
+                  <li><%= link_to "Log in", login_path %></li>
+                <% end %>
+
+
+
+
+
       </div>
     </nav>
     <%= yield %>
