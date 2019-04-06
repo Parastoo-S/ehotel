@@ -37,9 +37,9 @@
 
 
                 <% if logged_in? %>
-
                       <li class="divider"></li>
                       <li>
+                        <%= javascript_include_tag :jquery, :jquery_ujs %>
                         <%= link_to "Log out", logout_path, method: :delete %>
                       </li>
                     </ul>
