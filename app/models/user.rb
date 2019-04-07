@@ -15,10 +15,10 @@ class User < ApplicationRecord
   end
 
   def employee?
-    self.account_type == "employee"
+    self.account_type == "Employee"
   end
 
   def customer?
-    self.account_type == "customer"
+    self.account_type == "Customer"
   end
 end

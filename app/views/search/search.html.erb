@@ -54,9 +54,11 @@
           </div>
         <% end %>
       </div>
-      <div class="rcolumn">
-        <%= link_to 'Reserve', new_booking_path(:room_id => room.id),class:"addButton" , style:"text-decoration:none;color: #FFF"%>
-      </div>
+      <% if current_user %>
+        <div class="rcolumn">
+          <%= link_to 'Reserve', new_booking_path(:room_id => room.id),class:"addButton" , style:"text-decoration:none;color: #FFF"%>
+        </div>
+      <% end %>
   </div>
   <% end %>
   <%= will_paginate @rooms %>
