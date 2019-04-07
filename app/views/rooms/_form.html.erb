@@ -12,31 +12,31 @@
   <% end %>
 
   <div class="actions">
-    <%= form.label :price, "Price" %>
-    <%= form.number_field :price, placeholder: "$", step: :any %>
+    <%= form.label :price, "Price" %><br>
+    <%= form.number_field :price, placeholder: "$", step: :any, :class => "text_field"  %>
     <br>
     <%= form.hidden_field :hotel_id, :value => params[:hotel_id] %>
 
-    <%= form.label :capacity, "Capacity" %>
-    <%= form.number_field :capacity %>
+    <%= form.label :capacity, "Capacity" %><br>
+    <%= form.number_field :capacity, min: '0', :class => "text_field"  %>
     <br>
-    <%= form.label :extendible, "Extendible" %>
+    <%= form.label :extendible, "Extendible" %><br>
     <%= form.check_box :extendible%>
     <br>
     <%= form.label :view, "View" %>
-    <%= form.select :view,  ["Sea View", "Mountain View"], prompt: "Choose view" %>
-    <br>
+    <%= form.select :view,  ["Sea View", "Mountain View"], prompt: "Choose view", class: "text_field"  %>
+    <br><br>
     <%= form.label :amenity, "Amenities" %>
     <%= form.fields_for :amenity do |ff| %>
-      <h6> Please separate items with a comma</h6><br>
-      <%= text_area_tag 'amenities' %>
+      <h6> Please separate items with a comma</h6>
+      <%= text_area_tag 'amenities', nil,class: "text_field"  %>
     <% end %>
     <br>
     <%= form.label :damage, "Damages" %>
     <%= form.fields_for :damage do |ff| %>
-      <h6> Please separate items with a comma</h6><br>
-      <%= text_area_tag 'damages' %>
-    <% end %>
-    <%= form.submit %>
+      <h6> Please separate items with a comma</h6>
+      <%= text_area_tag 'damages' ,nil, :class => "text_field" %>
+    <% end %><br><br>
+    <%= form.submit :class => "addButton" %>
   </div>
 <% end %>

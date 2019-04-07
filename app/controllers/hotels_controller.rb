@@ -11,7 +11,7 @@ class HotelsController < ApplicationController
   # GET /hotels/1.json
   def show
     @hotel = Hotel.find(params[:id])
-    @hotel_rooms = @hotel.rooms
+    @hotel_rooms = @hotel.rooms.order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   # GET /hotels/new

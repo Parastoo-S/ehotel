@@ -13,7 +13,6 @@
       <%= submit_tag "Search",class:"newButton" %>
     <% end %>
   </div>
-
 </section>
 <section>
   <h1><b>Search Results</b></h1>
@@ -60,4 +59,6 @@
       </div>
   </div>
   <% end %>
+  <%= will_paginate @rooms %>
+
 </section>

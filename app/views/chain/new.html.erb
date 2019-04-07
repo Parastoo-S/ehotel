@@ -12,23 +12,23 @@
     <%= f.label :Address, "Chain Name" %><br>
 
     <%= f.fields_for :address do |ff| %>
-      <%= ff.number_field :street_number, placeholder: "Street Number" %>
-      <%= ff.text_field :street_name, placeholder: "Street Name" %>
-      <%= ff.text_field :apt_number, placeholder: "Apartment Number" %> <br>
-      <%= ff.text_field :city, placeholder: "City" %>
-      <%= ff.text_field :state, placeholder: "State/Province" %>
-      <%= ff.text_field :zip, placeholder: "ZIP Code" %>
+      <%= ff.number_field :street_number, placeholder: "Street Number",min: '0', :class => "text_field" %>
+      <%= ff.text_field :street_name, placeholder: "Street Name" , :class => "text_field"%>
+      <%= ff.text_field :apt_number, placeholder: "Apartment Number", :class => "text_field" %> <br>
+      <%= ff.text_field :city, placeholder: "City", :class => "text_field" %>
+      <%= ff.text_field :state, placeholder: "State/Province" , :class => "text_field"%>
+      <%= ff.text_field :zip, placeholder: "ZIP Code" , :class => "text_field"%>
     <% end %>
-    <br>
+    <br><br>
     <%= f.label :email, "Enter email addresses"%><br>
     <h6> Please separate emails with a comma</h6>
-    <%= text_area_tag 'emails', :class =>"text_area" %>
+    <%= text_area_tag 'emails', nil,class:"text_field" %>
     <br>
     <%= f.label :phone_number, "Enter Phone numbers"%><br>
     <h6> Please separate phone numbers with a comma</h6>
-    <%= text_area_tag 'phones', :class => "text_area" %>
-
-    <%= f.submit "Create Hotel Chain" %>
+    <%= text_area_tag 'phones', nil,class: "text_field" %>
+    <br><br>
+    <%= f.submit "Create Hotel Chain", :class => "addButton" %>
 
     <% end %>
 
