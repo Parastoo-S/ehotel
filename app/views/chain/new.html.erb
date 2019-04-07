@@ -6,9 +6,11 @@
   <div>
     <%= form_for @chain, url: {controller: "chain", action: "create"}, html: {multipart: true} do |f| %>
       <%= f.label :name, "Chain Name" %><br>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class=>"text_field" %>
 
     <br>
+    <%= f.label :Address, "Chain Name" %><br>
+
     <%= f.fields_for :address do |ff| %>
       <%= ff.number_field :street_number, placeholder: "Street Number" %>
       <%= ff.text_field :street_name, placeholder: "Street Name" %>
@@ -20,11 +22,11 @@
     <br>
     <%= f.label :email, "Enter email addresses"%><br>
     <h6> Please separate emails with a comma</h6>
-    <%= text_area_tag 'emails' %>
+    <%= text_area_tag 'emails', :class =>"text_area" %>
     <br>
     <%= f.label :phone_number, "Enter Phone numbers"%><br>
     <h6> Please separate phone numbers with a comma</h6>
-    <%= text_area_tag 'phones' %>
+    <%= text_area_tag 'phones', :class => "text_area" %>
 
     <%= f.submit "Create Hotel Chain" %>
 
