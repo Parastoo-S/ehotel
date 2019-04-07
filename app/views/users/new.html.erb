@@ -16,30 +16,64 @@
     <%= form_for(@user, url: signup_path) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
+      <%= f.label :first_name %>
       <%= f.text_field :first_name, class: 'form-control' %>
 
+      <br>
+      <%= f.label :middle_name %>
+      <%= f.text_field :middle_name, class: 'form-control' %>
+      <br>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+<br>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
+<br>
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
-
+<br>
       <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <br>
+            <%= f.label :address %>
+            <%= f.text_field :address_id, class: 'form-control' %>
 
-      <%= f.label :SSN %>
+      <br>
+
+<br>
+      <%= f.label :SSN , "SSN"%>
       <%= f.text_field :ssn, class: 'form-control' %>
 
-      <%= f.label :Position %>
-      <%= f.text_field :position, class: 'form-control' %>
+<br>
+
+       <script type="text/javascript">
+         function yesnoCheck(that) {
+         if (that.value == "Employee") {
+             document.getElementById("ifYes").style.display = "block";
+         } else {
+             document.getElementById("ifYes").style.display = "none";
+         }
+     }
+       </script>
+
+       <select onchange="yesnoCheck(this);">
+    <option value="">Choose your account type</option>
+    <option value="Customer">Customer</option>
+    <option value="Employee">Employee</option>
+</select>
+
+<br>
+<br>
+<div id="ifYes" style="display: none;">
+  <%= f.label :position , "Write your position"%>
+  <%= f.text_field :position, class: 'form-control' %>
+<br />
+</div>
 
 
-      <%= f.label :account_type, "Account Type" %>
-      <%= f.text_field :account_type, class: 'form-control' %>
-
-
+<br>
 
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>

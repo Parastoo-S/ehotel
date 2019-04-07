@@ -7,6 +7,9 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  VALID_SSN_REGEX =  /\A\d+\Z/
+  validates :ssn, presence: true, length: { minimum: 9, maximum:9},
+  format: { with: VALID_SSN_REGEX }
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
