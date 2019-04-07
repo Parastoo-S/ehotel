@@ -1,13 +1,3 @@
-<h1>New User</h1>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
-
-
-
-
-
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
@@ -37,9 +27,17 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <br>
-            <%= f.label :address %>
-            <%= f.text_field :address_id, class: 'form-control' %>
 
+          <%= f.label :address, "Address" %><br>
+          <%= f.fields_for :address do |ff| %>
+            <%= ff.number_field :street_number, placeholder: "Street Number" %>
+            <%= ff.text_field :street_name, placeholder: "Street Name" %>
+            <%= ff.text_field :apt_number, placeholder: "Apartment Number" %> <br>
+            <%= ff.text_field :city, placeholder: "City" %>
+            <%= ff.text_field :state, placeholder: "State/Province" %>
+            <%= ff.text_field :zip, placeholder: "ZIP Code" %>
+          <% end %>
+          <br>
       <br>
 
 <br>
@@ -47,6 +45,7 @@
       <%= f.text_field :ssn, class: 'form-control' %>
 
 <br>
+
 
        <script type="text/javascript">
          function yesnoCheck(that) {
@@ -58,11 +57,9 @@
      }
        </script>
 
-       <select onchange="yesnoCheck(this);">
-    <option value="">Choose your account type</option>
-    <option value="Customer">Customer</option>
-    <option value="Employee">Employee</option>
-</select>
+    <%= f.label :account_type %>
+    <%= f.select(:account_type, ["Customer","Employee"],{}, {:multiple => false, :onchange => "yesnoCheck(this);"}) %>
+
 
 <br>
 <br>
@@ -71,11 +68,7 @@
   <%= f.text_field :position, class: 'form-control' %>
 <br />
 </div>
-
-
 <br>
-
-
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
   </div>
