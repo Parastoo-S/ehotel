@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    <% if current_user.employee? %>
+    <% if current_user && current_user.employee? %>
       <div class="options">
       <a href="/chain/new"><button class="newButton">New Hotel Chain</button></a>
       </div>

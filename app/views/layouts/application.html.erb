@@ -34,7 +34,7 @@
           <li><a href="/chain">Chains</a></li>
           <li><a href="/media">Follow us</a></li>
 
-          <% if current_user.employee? %>
+          <%  if current_user && current_user.employee? %>
             <li><a href="/bookings">Bookings</a></li>
           <% end %>
 
