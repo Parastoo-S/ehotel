@@ -19,7 +19,9 @@
 
     <% @bookings.each do |booking| %>
       <tr>
-        <td> Pending </td>
+        <% if !booking.user_id.nil? %>
+          <td> <%= User.find(booking.user_id).get_full_name %> </td>
+        <% end %>
         <td><%=booking.room.hotel.address.get_full_address%> </td>
         <td> <%=booking.check_in.strftime("%B %d, %Y") %></td>
         <td> <%=booking.check_out.strftime("%B %d, %Y") %></td>
