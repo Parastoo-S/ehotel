@@ -33,4 +33,8 @@ class User < ApplicationRecord
   def customer?
     self.account_type == "Customer"
   end
+
+  def get_full_name
+    self.first_name + " " + self.last_name
+  end
 end
