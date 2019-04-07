@@ -12,12 +12,14 @@
     <%= f.label :Address, "Chain Name" %><br>
 
     <%= f.fields_for :address do |ff| %>
+
       <%= ff.number_field :street_number, placeholder: "Street Number",min: '0', :class => "text_field" %>
       <%= ff.text_field :street_name, placeholder: "Street Name" , :class => "text_field"%>
       <%= ff.text_field :apt_number, placeholder: "Apartment Number", :class => "text_field" %> <br>
       <%= ff.text_field :city, placeholder: "City", :class => "text_field" %>
       <%= ff.text_field :state, placeholder: "State/Province" , :class => "text_field"%>
       <%= ff.text_field :zip, placeholder: "ZIP Code" , :class => "text_field"%>
+
     <% end %>
     <br><br>
     <%= f.label :email, "Enter email addresses"%><br>
