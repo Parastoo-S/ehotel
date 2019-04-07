@@ -10,7 +10,8 @@ class HotelsController < ApplicationController
   # GET /hotels/1
   # GET /hotels/1.json
   def show
-    @hotel_rooms = @hotel.rooms
+    @hotel = Hotel.find(params[:id])
+    @hotel_rooms = @hotel.rooms.order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   # GET /hotels/new
@@ -59,9 +60,10 @@ class HotelsController < ApplicationController
   # DELETE /hotels/1
   # DELETE /hotels/1.json
   def destroy
+    @chain_id = @hotel.chain.id
     @hotel.destroy
     respond_to do |format|
-      format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
+      format.html { redirect_to chain_url(@chain_id), notice: 'Hotel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

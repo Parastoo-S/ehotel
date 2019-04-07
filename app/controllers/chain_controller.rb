@@ -1,7 +1,7 @@
 class ChainController < ApplicationController
 
   def index
-    @chains = Chain.all
+    @chains = Chain.all.order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -11,7 +11,7 @@ class ChainController < ApplicationController
 
   def show
     @chain = Chain.find(params[:id])
-    @chain_hotels = @chain.hotels
+    @chain_hotels = @chain.hotels.order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def create
@@ -28,16 +28,14 @@ class ChainController < ApplicationController
   end
 
   def edit
-    @chain = Chain.find(params[:chain_id])
+    @chain = Chain.find(params[:id])
   end
 
   def update
     respond_to do |format|
-      @chain = Chain.find(params[:chain_id])
-      binding.pry
+      @chain = Chain.find(params[:id])
       if @chain.update(chain_params)
-        binding.pry
-        format.html { redirect_to chain_show_path, notice: 'Chain was successfully updated.' }
+        format.html { redirect_to @chain, notice: 'Chain was successfully updated.' }
         format.json { render :show, status: :ok, location: @chain }
       else
         format.html { render :edit }
@@ -47,10 +45,10 @@ class ChainController < ApplicationController
   end
 
   def destroy
-    @chain = Chain.find(params[:chain_id])
+    @chain = Chain.find(params[:id])
     @chain.destroy
     respond_to do |format|
-      format.html { redirect_to chain_index_url, notice: 'Chain was successfully destroyed.' }
+      format.html { redirect_to chain_index_path, notice: 'Chain was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :chain do
     get 'edit'
     get 'show'
-    delete 'destroy'
+    # delete 'destroy'
     # member do
     #   patch 'update'
     # end

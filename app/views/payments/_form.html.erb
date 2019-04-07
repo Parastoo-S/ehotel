@@ -12,6 +12,34 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <b><h3> Room Info </h3></b>
+    <i class="fas fa-map-marker-alt"></i> <%= @room.hotel.chain.address.get_full_address %>
+    <div>Room sleeps <b><%=@room.capacity %></b> guests</div>
+    <div>Extindable:<%=@room.extendible ? "Yes" : "No"%></div>
+    <div><%=@room.view%></div>
+    <b>Amenities</b>
+    <% @room.amenities.each do |amenity| %>
+      <div class="row items">
+        <i class="fas fa-check"></i> <%= amenity.amenity_name %>
+      </div>
+    <% end %>
+    <div class="row items">
+      <b><i class="fas fa-house-damage"></i> Damages</b>
+    </div>
+    <% @room.damages.each do |damage| %>
+      <div class="row items">
+        <%= damage.damage_name %>
+      </div>
+    <% end %>
+    <br>
+    <%= form.hidden_field :room_id, :value => params[:room_id] %>
+    <%= form.hidden_field :employee_id, :value => current_user.id %>
+    <% if params[:booking_id].present? %>
+      <%= form.hidden_field :booking_id, :value => params[:booking_id] %>
+      <%= form.hidden_field :customer_id, :value => @booking.user_id %>
+    <% end %>
+    <%= form.select :payment_method, ["Debit", "Visa", "MasterCard", "Cash"], prompt: "Select Payment Method" %>
+    <br>
+    <%= form.submit :class => "newButton" %>
   </div>
 <% end %>

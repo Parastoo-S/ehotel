@@ -151,6 +151,10 @@ a.navbar-brand.logo{
   -moz-box-shadow: 3px 7px 16px -7px rgba(0,0,0,0.75);
   box-shadow: 3px 7px 16px -7px rgba(0,0,0,0.75);
 }
+div.row.items{
+  margin-left: 0px;
+}
+
 
 .fas.fa-star{
   color: #f2b01e;
@@ -321,3 +325,54 @@ $deg: -20;
   $deg: $deg + 10;
 }
 // END FOLLOW US
+
+//Booking table
+#bookings {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#bookings td, #bookings th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#bookings tr:nth-child(even){background-color: #f2f2f2;}
+
+#bookings tr:hover {background-color: #ddd;}
+
+#bookings th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #000;
+  color: white;
+  text-align: center;
+
+}
+
+//End booking table
+
+
+// New pages styles
+
+.text_field{
+  padding: 5px;
+  padding-left: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 5px;
+}
+
+select{
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 30px;
+  margin: 10px;
+  font-size: 15px;
+
+}
+
+// End new pages styles

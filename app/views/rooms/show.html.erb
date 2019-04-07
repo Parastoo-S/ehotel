@@ -2,9 +2,3 @@
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
-
-<br>
-<%= link_to 'Book This Room', new_booking_path(:room_id => @room.id) %>
-
-<h3> IF THE USER IS AN EMPLOYEE, SHOW THIS BUTTON </h3>
-<%= link_to 'Rent This Room', new_payment_path(:room_id => @room.id) %>

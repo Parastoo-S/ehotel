@@ -2,6 +2,7 @@ class Room < ApplicationRecord
   has_many :damages, dependent: :destroy
   has_many :amenities, dependent: :destroy
   has_many :bookings, dependent: :destroy
+  has_many :payments, dependent: :destroy
   belongs_to :hotel
   has_one :address, through: :hotel
 

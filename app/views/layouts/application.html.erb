@@ -34,19 +34,20 @@
           <li><a href="/chain">Chains</a></li>
           <li><a href="/media">Follow us</a></li>
 
+          <%  if current_user && current_user.employee? %>
+            <li><a href="/bookings">Bookings</a></li>
+          <% end %>
 
+          <% if logged_in? %>
+                <li class="divider"></li>
+                <li>
+                  <%= javascript_include_tag :jquery, :jquery_ujs %>
+                  <%= link_to "Log out", logout_path, method: :delete %>
+                </li>
+          <% else %>
 
-
-                <% if logged_in? %>
-                      <li class="divider"></li>
-                      <li>
-                        <%= javascript_include_tag :jquery, :jquery_ujs %>
-                        <%= link_to "Log out", logout_path, method: :delete %>
-                      </li>
-                <% else %>
-                  <li><%= link_to "Log in", login_path %></li>
-                <% end %>
-
+            <li><%= link_to "Log in", login_path %></li>
+          <% end %>
         </ul>
 
 

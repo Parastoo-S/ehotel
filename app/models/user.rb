@@ -24,5 +24,13 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                 BCrypt::Engine.cost
   BCrypt::Password.create(string, cost: cost)
-end
+  end
+
+  def employee?
+    self.account_type == "Employee"
+  end
+
+  def customer?
+    self.account_type == "Customer"
+  end
 end

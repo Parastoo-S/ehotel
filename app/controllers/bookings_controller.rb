@@ -4,7 +4,10 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    unless current_user && current_user.employee?
+      redirect_to root_path
+    end
+    @bookings = Booking.where(:status => "booking").order("id DESC").paginate(page: params[:page], per_page: 10)
   end
 
   # GET /bookings/1
@@ -15,7 +18,9 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
-    @booking.room = Room.find(params[:room_id])
+    if params[:room_id].present?
+      @booking.room = Room.find(params[:room_id])
+    end
   end
 
   # GET /bookings/1/edit
@@ -26,8 +31,9 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
     if params[:room_id].present?
-      @booking.hotel_id = params[:hotel_id]
+      @booking.room_id = params[:room_id]
     end
     @booking[:status] = "booking"
     @booking.room.update(:status => "booking")
@@ -47,7 +53,7 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to bookings_path, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit }

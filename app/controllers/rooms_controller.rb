@@ -33,7 +33,7 @@ class RoomsController < ApplicationController
         end
         create_amenity
         create_damage
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to hotel_path(@room.hotel_id), notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to hotel_path(@room.hotel_id), notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -59,9 +59,10 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
+    @hotel = @room.hotel.id
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.html { redirect_to hotel_url(@hotel), notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -93,6 +94,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.fetch(:room).permit(:price, :capacity, :extendible, :occupied, :status, :view, :hotel_id, amenity_attributes: [:amenity_name, :room_id], damage_attributes: [:damage_name, :room_id])
+      params.fetch(:room).permit(:price, :capacity, :extendible, :occupied, :status, :view, amenity_attributes: [:amenity_name, :room_id], damage_attributes: [:damage_name, :room_id])
     end
 end
