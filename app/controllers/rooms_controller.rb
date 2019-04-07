@@ -15,7 +15,6 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
-    # @room.hotel_id = (params[:hotel_id]).to_i
   end
 
   # GET /rooms/1/edit
@@ -94,6 +93,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.fetch(:room).permit(:price, :capacity, :extendible, :occupied, :status, :view, amenity_attributes: [:amenity_name, :room_id], damage_attributes: [:damage_name, :room_id])
+      params.fetch(:room).permit(:price, :capacity, :extendible, :occupied, :status, :view, :hotel_id, amenity_attributes: [:amenity_name, :room_id], damage_attributes: [:damage_name, :room_id])
     end
 end
