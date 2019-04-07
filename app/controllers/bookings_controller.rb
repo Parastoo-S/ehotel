@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     if params[:room_id].present?
-      @booking.hotel_id = params[:hotel_id]
+      @booking.room_id = params[:room_id]
     end
     @booking[:status] = "booking"
     @booking.room.update(:status => "booking")
@@ -53,7 +53,7 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to bookings_path, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit }

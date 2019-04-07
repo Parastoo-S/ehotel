@@ -9,7 +9,6 @@
       <th>Room</th>
       <th>Check-in Date</th>
       <th>Check-out Date</th>
-      <th>Edit</th>
       <th>Delete</th>
       <th>Rent</th>
 
@@ -24,7 +23,6 @@
         <td><%=booking.room.hotel.address.get_full_address%> </td>
         <td> <%=booking.check_in.strftime("%B %d, %Y") %></td>
         <td> <%=booking.check_out.strftime("%B %d, %Y") %></td>
-        <td><%= link_to '', edit_booking_path(booking),class: 'fas fa-edit', style:"text-decoration:none; color: #37BC61" %></td>
         <td><%= link_to '', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fas fa-trash-alt',style:"text-decoration:none; color: #F00"%></td>
         <td><%= link_to 'Proceed with Payment', new_payment_path(:room_id => booking.room_id, :booking_id => booking.id), class: "newButton",style:"text-decoration:none;color: #FFF" %></td>
       </tr>
@@ -35,5 +33,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Booking', new_booking_path %>
