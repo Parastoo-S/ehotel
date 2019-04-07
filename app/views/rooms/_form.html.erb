@@ -15,8 +15,9 @@
     <%= form.label :price, "Price" %><br>
     <%= form.number_field :price, placeholder: "$", step: :any, :class => "text_field"  %>
     <br>
-    <%= form.hidden_field :hotel_id, :value => params[:hotel_id] %>
-
+    <% if params[:hotel_id].present? %>
+      <%= form.hidden_field :hotel_id, :value => params[:hotel_id] %>
+    <% end %>
     <%= form.label :capacity, "Capacity" %><br>
     <%= form.number_field :capacity, min: '0', :class => "text_field"  %>
     <br>
