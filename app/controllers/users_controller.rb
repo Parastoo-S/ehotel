@@ -5,14 +5,14 @@ class UsersController < ApplicationController
 
     def new
       @user = User.new
+      @user.address = Address.new
     end
 
     def create
       @user = User.new(user_params)
         if @user.save
           log_in @user
-        flash[:success] = "Your account has been successfully made. Welcome!"
-          redirect_to @user
+          redirect_to "/"
           # Handle a successful save.
         else
           render 'new'
@@ -23,7 +23,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :ssn, :middle_name, :last_name, :account_type,
+                                 :address, :position,address_attributes: [:street_number, :street_name,
+                                   :apt_number, :city, :state, :zip])
   end
 end
 

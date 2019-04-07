@@ -10,12 +10,12 @@
 
     <br>
     <%= f.fields_for :address do |ff| %>
-      <%= ff.number_field :street_number, placeholder: "Street Number" %>
-      <%= ff.text_field :street_name, placeholder: "Street Name" %>
-      <%= ff.text_field :apt_number, placeholder: "Apartment Number" %> <br>
-      <%= ff.text_field :city, placeholder: "City" %>
-      <%= ff.text_field :state, placeholder: "State/Province" %>
-      <%= ff.text_field :zip, placeholder: "ZIP Code" %>
+      <%= ff.number_field :street_number, placeholder: "Street Number",:class => "text_field" %>
+      <%= ff.text_field :street_name, placeholder: "Street Name",:class => "text_field" %>
+      <%= ff.text_field :apt_number, placeholder: "Apartment Number",:class => "text_field" %> <br>
+      <%= ff.text_field :city, placeholder: "City",:class => "text_field" %>
+      <%= ff.text_field :state, placeholder: "State/Province",:class => "text_field" %>
+      <%= ff.text_field :zip, placeholder: "ZIP Code",:class => "text_field" %>
     <% end %>
     <br>
     <%= f.label :email, "Enter email addresses"%><br>
